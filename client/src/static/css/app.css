@@ -1,0 +1,19 @@
+.App ul {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.contacts-list {
+    float: right;
+    margin-top: 64px;
+}
+
+.email-list {
+    margin-top: 64px;
+    left: 245px;
+    position: fixed;
+}
+
+.email-list ul {
+    width: 100%;
+}
