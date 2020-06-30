@@ -57,7 +57,7 @@ const SideNav = (props: any) => {
         <Divider />
           <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text} onClick={() => props.onSelectFolder('' + index)}>
+            <ListItem button key={text} onClick={() => props.onSelectFolder('' + (index + 1))}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} id={`${index}`} />
             </ListItem>

@@ -6,18 +6,18 @@ import SideNav from "../sidenav/sidenav";
 import { Container } from "@material-ui/core";
 
 interface MainContainerState {
-  folderId: string;
+  folderId: number;
 }
 
 class MainContainer extends React.Component<any, MainContainerState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      folderId: ""
+      folderId: 1
     };
   }
 
-  onSelectFolder = (folderId: string) => {
+  onSelectFolder = (folderId: number) => {
     this.setState({
       folderId: folderId
     });

@@ -2,7 +2,7 @@ import React from "react";
 import { createStyles, withStyles, makeStyles, Theme, List, ListItemAvatar, ListItem, Avatar, ListItemText, Typography } from "@material-ui/core";
 
 interface EmailListProps {
-    folderId: string;
+    folderId: number;
 };
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -24,9 +24,11 @@ class EmailList extends React.Component<EmailListProps> {
         // @ts-ignore
         const { classes, folderId } = this.props;
         console.log(folderId);
+        const arr = [1, 2, 3, 4];
+        let updatedArr = arr.map(element => element * folderId);
         return (
             <List dense className={classes.root}>
-                {[0, 1, 2, 3].map(value => {
+                {updatedArr.map(value => {
                     return (
                         <ListItem key={value} button>
                             <ListItemAvatar>

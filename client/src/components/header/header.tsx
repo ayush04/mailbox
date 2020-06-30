@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from 'clsx';
+import clsx from "clsx";
 import {
   Toolbar,
   IconButton,
@@ -11,12 +11,13 @@ import {
   AppBar
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import ContactDialog from "./contact-dialog";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex"
   },
   title: {
     flexGrow: 1
@@ -31,101 +32,95 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 36
   },
   hide: {
-    display: 'none',
+    display: "none"
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap"
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   drawerClose: {
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    overflowX: 'hidden',
+    overflowX: "hidden",
     width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9) + 1
+    }
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   }
 }));
 
 const Header = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
   const theme = useTheme();
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed"
+      <AppBar
+        position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
-      <Toolbar>
-        <IconButton edge="start" color="inherit" className={classes.menuButton} aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>MailBox</Typography>
-        <Button color="inherit">Create Mail</Button>
-      </Toolbar>
-    </AppBar>
-    
-      {/* <Drawer variant="permanent"
-      className={clsx(classes.drawer, {
-        [classes.drawerOpen]: open,
-        [classes.drawerClose]: !open,
-      })}
-      classes={{
-        paper: clsx({
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        }),
-      }}>
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          [classes.appBarShift]: false
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            className={classes.menuButton}
+            aria-label="menu"
+          >
+            <MenuIcon />
           </IconButton>
-        </div>
-        <Divider />
-          <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-          </List>
-      </Drawer> */}
+          <Typography variant="h6" className={classes.title}>
+            MailBox
+          </Typography>
+          <Button color="inherit">Create Mail</Button>
+          <Button color="inherit" onClick={openModal}>
+            Add Contact
+          </Button>
+        </Toolbar>
+        <ContactDialog isOpen={modalOpen} closeDialog={closeModal}/>
+      </AppBar>
     </div>
   );
 };
