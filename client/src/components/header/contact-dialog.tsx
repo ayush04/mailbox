@@ -1,26 +1,25 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Button, DialogActions, TextField } from '@material-ui/core';
 
-interface ContactDialogProps {
-    closeDialog: any;
+interface IContactDialogProps {
+    cancelButtonClickHandler: any;
     isOpen: boolean;
+    onAddContact: Function;
 };
+interface IContactDialogState {
+    name: string;
+    email: string;
+}
 
-class ContactDialog extends React.Component<ContactDialogProps> {
-//const ContactDialog = (props: any) => {
-    constructor(props: ContactDialogProps) {
+class ContactDialog extends React.Component<IContactDialogProps, IContactDialogState> {
+    constructor(props: IContactDialogProps) {
         super(props);
         this.state = {
             name: '',
             email: ''
-        }
+        };
     }
 
-    private addButtonClickHandler = () => {
-        this.props.closeDialog();
-        console.log(this.state);
-    };
-    
     private onNameChange = (event: any) => {
         if (event && event.target) {
             this.setState({
@@ -50,8 +49,8 @@ class ContactDialog extends React.Component<ContactDialogProps> {
                         margin='dense' name='email' label='Email Address' onChange={this.onEmailChange} type='email' fullWidth/>
                 </DialogContent>
                 <DialogActions>
-                    <Button color='primary' onClick={this.addButtonClickHandler} variant='contained'>Add</Button>
-                    <Button color='secondary' onClick={this.props.closeDialog} variant='contained'>Cancel</Button>
+                    <Button color='primary' onClick={() => this.props.onAddContact(this.state.name, this.state.email)} variant='contained'>Add</Button>
+                    <Button color='secondary' onClick={this.props.cancelButtonClickHandler} variant='contained'>Cancel</Button>
                 </DialogActions>
             </Dialog>
         );

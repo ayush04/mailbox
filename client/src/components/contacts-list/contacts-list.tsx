@@ -1,8 +1,9 @@
 import React from "react";
 import { createStyles, withStyles, makeStyles, Theme, List, ListItemAvatar, ListItem, Avatar, ListItemText } from "@material-ui/core";
+import { Contact } from "../main-container/main-container";
 
 interface ContactsListProps {
-  folderId: string;
+  contacts: Array<Contact>;  
 }
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -25,13 +26,14 @@ class ContactsList extends React.Component<ContactsListProps> {
     const { classes } = this.props;
     return (
       <List dense className={classes.root}>
-        {[0, 1, 2, 3].map(value => {
+        {this.props.contacts.map(contact => {
           return (
-            <ListItem key={value} button>
+            <ListItem key={contact.email} button>
               <ListItemAvatar>
                 <Avatar src='./img/avatar.jpg' />
               </ListItemAvatar>
-              <ListItemText primary={`Contact ${value}`} />
+              <ListItemText primary={contact.name}
+                secondary={contact.email} />
             </ListItem>
           )
         })}

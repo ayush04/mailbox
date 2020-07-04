@@ -80,7 +80,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Header = () => {
+interface IHeaderProps {
+  onAddContact: Function
+}
+
+const Header = (props: IHeaderProps) => {
   const classes = useStyles();
   const [modalOpen, setModalOpen] = React.useState(false);
   const theme = useTheme();
@@ -88,9 +92,17 @@ const Header = () => {
   const openModal = () => {
     setModalOpen(true);
   };
-
+  // check if setModalOpen is sync
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const onAddContact = (name: string, email: string) => {
+    props.onAddContact({
+      name,
+      email
+    });
+    closeModal();
   };
 
   return (
@@ -119,7 +131,7 @@ const Header = () => {
             Add Contact
           </Button>
         </Toolbar>
-        <ContactDialog isOpen={modalOpen} closeDialog={closeModal}/>
+        <ContactDialog isOpen={modalOpen} cancelButtonClickHandler={closeModal} onAddContact={onAddContact} />
       </AppBar>
     </div>
   );
