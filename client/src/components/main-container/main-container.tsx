@@ -5,17 +5,17 @@ import ContactsList from "../contacts-list/contacts-list";
 import SideNav from "../sidenav/sidenav";
 import { Container } from "@material-ui/core";
 
-export interface Contact {
+export interface IContact {
   name: string,
   email: string
 }
 
-interface MainContainerState {
+interface IMainContainerState {
   folderId: number;
-  contacts: Array<Contact>
+  contacts: Array<IContact>
 }
 
-class MainContainer extends React.Component<any, MainContainerState> {
+class MainContainer extends React.Component<any, IMainContainerState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -30,30 +30,12 @@ class MainContainer extends React.Component<any, MainContainerState> {
     });
   };
 
-  onAddContact = (contact: Contact) => {
+  onAddContact = (contact: IContact) => {
     const contacts = [...this.state.contacts, contact];
     this.setState({
       contacts
     });
   }
-
-  /* onUpdateName = (name: string) => {
-    this.setState({
-      newContact: {
-        name: name
-      }
-    });
-  }
-
-  onUpdateEmail = (email: string) => {
-    this.setState({
-      newContact: {
-        email: email
-      }
-    }); 
-
-    console.log(this.state);
-  } */
 
   onDialogClose = () => {
     console.log('dialog closed');

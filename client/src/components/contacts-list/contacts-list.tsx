@@ -1,9 +1,9 @@
 import React from "react";
 import { createStyles, withStyles, makeStyles, Theme, List, ListItemAvatar, ListItem, Avatar, ListItemText } from "@material-ui/core";
-import { Contact } from "../main-container/main-container";
+import { IContact } from "../main-container/main-container";
 
-interface ContactsListProps {
-  contacts: Array<Contact>;  
+interface IContactsListProps {
+  contacts: Array<IContact>;  
 }
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme: Theme) => {
   })
 });
 
-class ContactsList extends React.Component<ContactsListProps> {
-  constructor(props: ContactsListProps) {
+class ContactsList extends React.Component<IContactsListProps> {
+  constructor(props: IContactsListProps) {
     super(props);
   }
 

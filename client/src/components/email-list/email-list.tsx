@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyles, withStyles, makeStyles, Theme, List, ListItemAvatar, ListItem, Avatar, ListItemText, Typography } from "@material-ui/core";
 
-interface EmailListProps {
+interface IEmailListProps {
     folderId: number;
 };
 
@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme: Theme) => {
     })
 });
 
-class EmailList extends React.Component<EmailListProps> {
-    constructor(props: EmailListProps) {
+class EmailList extends React.Component<IEmailListProps> {
+    constructor(props: IEmailListProps) {
         super(props);
     }
 
