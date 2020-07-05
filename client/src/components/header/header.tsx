@@ -11,7 +11,7 @@ import {
   AppBar
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import ContactDialog from "./contact-dialog";
+import ContactDialog from "../contact-dialog/contact-dialog";
 
 const drawerWidth = 240;
 

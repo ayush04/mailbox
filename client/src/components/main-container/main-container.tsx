@@ -4,15 +4,16 @@ import EmailList from "../email-list/email-list";
 import ContactsList from "../contacts-list/contacts-list";
 import SideNav from "../sidenav/sidenav";
 import { Container } from "@material-ui/core";
+import ComposeEmail from "../compose-email/compose-email";
 
 export interface IContact {
-  name: string,
-  email: string
+  name: string;
+  email: string;
 }
 
 interface IMainContainerState {
   folderId: number;
-  contacts: Array<IContact>
+  contacts: Array<IContact>;
 }
 
 class MainContainer extends React.Component<any, IMainContainerState> {
@@ -35,10 +36,10 @@ class MainContainer extends React.Component<any, IMainContainerState> {
     this.setState({
       contacts
     });
-  }
+  };
 
   onDialogClose = () => {
-    console.log('dialog closed');
+    console.log("dialog closed");
   };
 
   render() {
@@ -48,6 +49,9 @@ class MainContainer extends React.Component<any, IMainContainerState> {
         <SideNav onSelectFolder={this.onSelectFolder} />
         <Container maxWidth="md" className="email-list">
           <EmailList folderId={this.state.folderId} />
+        </Container>
+        <Container>
+          <ComposeEmail />
         </Container>
         <span className="contacts-list">
           <ContactsList contacts={this.state.contacts} />
