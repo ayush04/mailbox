@@ -14,6 +14,7 @@ export interface IContact {
 interface IMainContainerState {
   folderId: number;
   contacts: Array<IContact>;
+  composeEmailOpen: boolean;
 }
 
 class MainContainer extends React.Component<any, IMainContainerState> {
@@ -21,7 +22,8 @@ class MainContainer extends React.Component<any, IMainContainerState> {
     super(props);
     this.state = {
       folderId: 1,
-      contacts: []
+      contacts: [],
+      composeEmailOpen: false
     };
   }
 
@@ -38,6 +40,18 @@ class MainContainer extends React.Component<any, IMainContainerState> {
     });
   };
 
+  onClickCreateEmail = () => {
+    this.setState({
+      composeEmailOpen: true
+    });
+  };
+
+  onClickCloseEmail = () => {
+    this.setState({
+      composeEmailOpen: false
+    });
+  };
+
   onDialogClose = () => {
     console.log("dialog closed");
   };
@@ -45,13 +59,13 @@ class MainContainer extends React.Component<any, IMainContainerState> {
   render() {
     return (
       <React.Fragment>
-        <Header onAddContact={this.onAddContact} />
+        <Header onAddContact={this.onAddContact} onClickComposeEmail={this.onClickCreateEmail} />
         <SideNav onSelectFolder={this.onSelectFolder} />
         <Container maxWidth="md" className="email-list">
           <EmailList folderId={this.state.folderId} />
         </Container>
         <Container>
-          <ComposeEmail />
+          <ComposeEmail isOpen={this.state.composeEmailOpen} onCloseComposeEmail={this.onClickCloseEmail} />
         </Container>
         <span className="contacts-list">
           <ContactsList contacts={this.state.contacts} />

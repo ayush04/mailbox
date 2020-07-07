@@ -17,3 +17,6 @@
 .email-list ul {
     width: 100%;
 }
+ *:focus {
+     outline: none;
+ }

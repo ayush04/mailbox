@@ -11,7 +11,8 @@ import {
   Toolbar,
   IconButton,
   Divider,
-  InputBase
+  InputBase,
+  Button
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -57,14 +58,41 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen
       })
+    },
+    hidden: {
+      display: "none"
+    },
+    input: {
+      width: "100%",
+      padding: "7px"
+    },
+    editor: {
+      "font-size": "16px",
+      "font-family": "Roboto, Helvetica, Arial, sans-serif",
+      padding: "10px",
+      "overflow-y": "auto",
+      height: "300px"
+    },
+    footer: {
+      padding: "7px"
     }
   })
 );
 
-const ComposeEmail = () => {
+interface IComposeEmailProps {
+  isOpen: boolean;
+  onCloseComposeEmail: Function;
+}
+
+const ComposeEmail = (props: IComposeEmailProps) => {
   const classes = useStyles();
   return (
-    <Paper elevation={6} className={classes.root}>
+    <Paper
+      elevation={6}
+      className={
+        props.isOpen ? classes.root : classes.root + " " + classes.hidden
+      }
+    >
       <Box component="div">
         <AppBar
           position="relative"
@@ -76,19 +104,33 @@ const ComposeEmail = () => {
             <Typography variant="h6" className={classes.title}>
               New Message
             </Typography>
-            <IconButton aria-label="Cancel" color="inherit">
+            <IconButton
+              aria-label="Cancel"
+              color="inherit"
+              onClick={() => props.onCloseComposeEmail()}
+            >
               <CloseIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
       <Box component="div">
-        <InputBase placeholder="To"></InputBase>
-              <Divider component="hr" className={classes.divider} />
-              <InputBase placeholder="From"></InputBase>
-              <Divider component="hr" className={classes.divider} />
+        <InputBase placeholder="To" className={classes.input}></InputBase>
+        <Divider component="hr" className={classes.divider} />
+        <InputBase placeholder="From" className={classes.input}></InputBase>
+        <Divider component="hr" className={classes.divider} />
       </Box>
-      <div>compose email</div>
+      <div
+        contentEditable={true}
+        placeholder="Compose a message.."
+        className={classes.editor}
+      ></div>
+      <Divider component="hr" className={classes.divider} />
+      <Box component="div" className={classes.footer}>
+        <Button variant="contained" color="primary">
+          Send
+        </Button>
+      </Box>
     </Paper>
   );
 };

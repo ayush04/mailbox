@@ -81,7 +81,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface IHeaderProps {
-  onAddContact: Function
+  onAddContact: Function,
+  onClickComposeEmail: Function
 }
 
 const Header = (props: IHeaderProps) => {
@@ -126,7 +127,7 @@ const Header = (props: IHeaderProps) => {
           <Typography variant="h6" className={classes.title}>
             MailBox
           </Typography>
-          <Button color="inherit">Create Mail</Button>
+          <Button color="inherit" onClick={() => props.onClickComposeEmail()}>Create Mail</Button>
           <Button color="inherit" onClick={openModal}>
             Add Contact
           </Button>
