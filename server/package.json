@@ -1,0 +1,20 @@
+{
+  "name": "mailbox-server",
+  "version": "0.1.0",
+  "description": "MailBox server side code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.config.js",
+    "node": "nodemon dist/app.js"
+  },
+  "author": "ayush",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
